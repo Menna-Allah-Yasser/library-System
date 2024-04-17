@@ -1,0 +1,41 @@
+create database librarysystem;
+
+use librarysystem;
+
+CREATE TABLE user (
+     id bigint AUTO_INCREMENT PRIMARY KEY,
+     pass varchar(30) NOT NULL,
+     FirstName varchar(10),
+     lastName varchar(10)
+);
+
+describe user;
+
+create table client (
+     id bigint AUTO_INCREMENT PRIMARY KEY,
+     FirstName varchar(10),
+     lastName varchar(10),
+     email  varchar(30) NOT NULL,
+     address  varchar(30) NOT NULL );
+
+describe client;
+
+create table book (
+     id bigint AUTO_INCREMENT PRIMARY KEY,
+     name varchar(40),
+     author_Name varchar(20),
+     is_borrowed bool );
+
+describe book;
+
+CREATE TABLE Borrowed (
+  id bigint AUTO_INCREMENT PRIMARY KEY,
+  client_id bigint,
+  book_id bigint,
+  return_time int,
+  FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE ,
+  FOREIGN KEY (book_id) REFERENCES book(id) ON DELETE CASCADE
+);
+
+describe borrowed;
+
